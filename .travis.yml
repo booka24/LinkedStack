@@ -6,7 +6,7 @@ before_script:
   - mkdir ../build
   - cd ../build
 script:
-  - cmake ../Lab9
+  - cmake ../LinkedStack
   - make -j
   - ./test/MP9_TESTS
 notifications:
