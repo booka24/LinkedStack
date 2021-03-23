@@ -36,17 +36,6 @@ TEST(LinkedStack, cant_get_if_empty)
 	ASSERT_ANY_THROW(s.pop());
 }
 
-TEST(LinkedStack, can_copy_LinkedStack)
-{
-	Stack<int> s;
-	s.push(1);
-	s.push(2);
-	Stack<int> s2(s);
-	int j;
-	s2.pop(j);
-	EXPECT_EQ(2,j );
-}
-
 TEST(LinkedStack, can_get_count)
 {
 	Stack<int> s;
