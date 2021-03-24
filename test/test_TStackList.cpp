@@ -19,6 +19,24 @@ TEST(LinkedStack, can_push)
 
 	ASSERT_NO_THROW(s.push(3));
 }
+TEST(TStackList, can_assing_StackList)
+{
+	Stack<int> s1;
+	s1.push(1);
+	Stack<int> s2;
+	s2 = s1;
+	
+	EXPECT_EQ(1, s2.getTop());
+}
+
+TEST(LinkedStack, can_copy_LinkedStack)
+{
+	Stack<int> s;
+	s.push(2);
+	s.push(3);
+	Stack<int> s2(s);
+	ASSERT_NO_THROW();
+}
 
 TEST(LinkedStack, can_get_element)
 {

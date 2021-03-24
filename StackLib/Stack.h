@@ -12,6 +12,7 @@ protected:
 	};
 	StackNode* topPtr;
 	int count;
+	void get_all(t* temp);
 public:
 	Stack();
 	Stack(Stack<t>& v);
@@ -19,18 +20,42 @@ public:
     void push(t newItem);
 	void pop();
 	void pop(t& stackTop);
-    void getTop(t stackTop);
+    t getTop();
 	t get_min();
 	t get_max();
 	int get_count();
+	void operator=(Stack<t>& v);
 };
 
+
+template<class t>
+inline void Stack<t>::get_all(t* temp)
+{
+	temp = new t[count];
+    
+}
 
 template<class t>
 inline Stack<t>::Stack()
 {
 		topPtr = NULL;
 		count = 0;
+}
+
+template<class t>
+inline Stack<t>::Stack(Stack<t>& v)
+{
+	count = v.count;
+	t* temp = new t[count];
+	StackNode* curPtr = v.topPtr;
+	int i = 0;
+	while (curPtr != NULL) {
+		temp[i] = curPtr->item;
+		curPtr = curPtr->next;
+		i++;
+	}
+	for (int i = count - 1; i >= 0; i--)
+		push(temp[i]);
 }
 
 template<class t>
@@ -84,14 +109,12 @@ inline void Stack<t>::pop(t& stackTop)
 }
 
 template<class t>
-inline void Stack<t>::getTop(t stackTop)
+inline t Stack<t>::getTop()
 {
 	if (isEmpty())
-		cout << "stack empty on getTop";
+		throw "stack empty on getTop";
 	else
-		stackTop = topPtr->item;
-	cout << "\nTop Element of the stack is " << stackTop;
-	cout << endl;
+		return topPtr->item;
 }
 
 template<class t>
@@ -126,6 +149,24 @@ template<class t>
 inline int Stack<t>::get_count()
 {
 	return count;
+}
+
+template<class t>
+inline void Stack<t>::operator=(Stack<t>& v)
+{
+	for (int i = 0; i < count; i++)
+		pop();
+	count = v.count;
+	t* temp = new t[count];
+	StackNode* curPtr = v.topPtr;
+	int i = 0;
+	while (curPtr != NULL) {
+		temp[i] = curPtr->item;
+		curPtr = curPtr->next;
+		i++;
+	}
+	for (int i = count - 1; i >= 0; i--)
+		push(temp[i]);
 }
 
 #endif
